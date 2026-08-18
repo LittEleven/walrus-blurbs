@@ -3,107 +3,103 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Game Show Wiki</title>
-<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+<title>Walrus Blurbs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0f1117;
-    --panel: #171a23;
-    --text: #eef0f5;
-    --muted: #9aa1b2;
-    --accent: #7c9aff;
-    --border: #2a2e3b;
-  }
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-  }
-  header {
-    padding: 3rem 1.5rem 2rem;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-  }
-  header h1 {
-    margin: 0 0 0.5rem;
-    font-size: 2rem;
-    letter-spacing: -0.01em;
-  }
-  header p {
-    margin: 0;
-    color: var(--muted);
+    min-height: 100vh;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-family: "Lexend", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8vh 1.5rem 4rem;
   }
   main {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 2rem 1.5rem 4rem;
+    width: 100%;
+    max-width: 640px;
   }
-  #search {
-    margin-bottom: 2.5rem;
-  }
-  .pagefind-ui {
-    --pagefind-ui-scale: 1;
-    --pagefind-ui-primary: #7c9aff;
-    --pagefind-ui-text: #eef0f5;
-    --pagefind-ui-background: #171a23;
-    --pagefind-ui-border: #2a2e3b;
-    --pagefind-ui-tag: #232735;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 0.75rem;
-  }
-  .grid a {
-    display: block;
-    padding: 1rem 1.1rem;
-    background: var(--panel);
-    border: 1px solid var(--border);
+  #search-box {
+    width: 100%;
+    font-family: "Lexend", sans-serif;
+    font-size: 1.05rem;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid #e2e2e2;
     border-radius: 10px;
-    color: var(--text);
+    outline: none;
+    color: #1a1a1a;
+  }
+  #search-box:focus {
+    border-color: #1a1a1a;
+  }
+  #results {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  #results a {
+    display: block;
+    padding: 0.9rem 1.1rem;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    color: #1a1a1a;
     text-decoration: none;
     font-weight: 500;
-    transition: border-color 0.15s ease, transform 0.15s ease;
+    transition: border-color 0.15s ease;
   }
-  .grid a:hover {
-    border-color: var(--accent);
-    transform: translateY(-1px);
+  #results a:hover {
+    border-color: #1a1a1a;
   }
-  footer {
-    text-align: center;
-    color: var(--muted);
+  #results a span {
+    display: block;
+    font-weight: 300;
     font-size: 0.85rem;
-    padding: 2rem;
+    color: #777;
+    margin-top: 0.2rem;
   }
 </style>
 </head>
 <body>
-<header>
-  <h1>Game Show Wiki</h1>
-  <p>Search or browse every page</p>
-</header>
 <main>
-  <div id="search"></div>
-  <div class="grid" id="page-list"></div>
+  <input id="search-box" type="text" placeholder="Search the walruses… (press Enter)" autofocus>
+  <div id="results"></div>
 </main>
-<footer>Powered by Pagefind</footer>
 
-<script src="/pagefind/pagefind-ui.js"></script>
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    new PagefindUI({ element: "#search", showSubResults: true });
-  });
+<script src="./pagefind/pagefind.js" type="module"></script>
+<script type="module">
+  const pagefind = await import("./pagefind/pagefind.js");
+  await pagefind.init();
 
-  const pages = [{"title": "Advanced RPGrus", "href": "Advanced%20RPGrus.html"}, {"title": "Balatrus", "href": "Balatrus.html"}, {"title": "Beatnik Café", "href": "Beatnik%20Caf%C3%A9.html"}, {"title": "Bon Voyage", "href": "Bon%20Voyage.html"}, {"title": "Crimerus", "href": "Crimerus.html"}, {"title": "Ear Emporium", "href": "Ear%20Emporium.html"}, {"title": "Fablerus", "href": "Fablerus.html"}, {"title": "Fallguyrus", "href": "Fallguyrus.html"}, {"title": "Festivalrus", "href": "Festivalrus.html"}, {"title": "Frogrus", "href": "Frogrus.html"}, {"title": "Gala Mystère", "href": "Gala%20Myst%C3%A8re.html"}, {"title": "GameNightRus", "href": "GameNightRus.html"}, {"title": "Lapras Liner Radio", "href": "Lapras%20Liner%20Radio.html"}, {"title": "LifeSMPrus", "href": "LifeSMPrus.html"}, {"title": "Lights Cameras Actionrus", "href": "Lights%20Cameras%20Actionrus.html"}, {"title": "Literarus", "href": "Literarus.html"}, {"title": "Mad Hatter’s Tea Party", "href": "Mad%20Hatter%E2%80%99s%20Tea%20Party.html"}, {"title": "Magical Adventure", "href": "Magical%20Adventure.html"}, {"title": "Mythicrus", "href": "Mythicrus.html"}, {"title": "Nyarus", "href": "Nyarus.html"}, {"title": "Panderus", "href": "Panderus.html"}, {"title": "RPGrus", "href": "RPGrus.html"}, {"title": "Raverus", "href": "Raverus.html"}, {"title": "Road Triprus", "href": "Road%20Triprus.html"}, {"title": "Scale the Spire", "href": "Scale%20the%20Spire.html"}, {"title": "Schismrus", "href": "Schismrus.html"}, {"title": "Survivorus", "href": "Survivorus.html"}, {"title": "The Console Warsii 3", "href": "The%20Console%20Warsii%203.html"}, {"title": "The Legend of Walrii", "href": "The%20Legend%20of%20Walrii.html"}, {"title": "Time Slip 240", "href": "Time%20Slip%20240.html"}, {"title": "Time Slip", "href": "Time%20Slip.html"}, {"title": "Unhingerus", "href": "Unhingerus.html"}, {"title": "Weddingrus", "href": "Weddingrus.html"}];
+  const input = document.getElementById("search-box");
+  const results = document.getElementById("results");
 
-  const list = document.getElementById("page-list");
-  pages.forEach(({ title, href }) => {
-    const a = document.createElement("a");
-    a.href = "/" + href;
-    a.textContent = title;
-    list.appendChild(a);
+  async function runSearch(term) {
+    results.innerHTML = "";
+    const search = await pagefind.search(term || null);
+    const data = await Promise.all(search.results.map(r => r.data()));
+    if (data.length === 0) {
+      results.innerHTML = '<p style="color:#777;">No walruses found.</p>';
+      return;
+    }
+    data.forEach(page => {
+      const a = document.createElement("a");
+      a.href = page.url;
+      a.innerHTML = `${page.meta.title || page.url}<span>${page.excerpt}</span>`;
+      results.appendChild(a);
+    });
+  }
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      // Empty box + Enter shows every walrus (pagefind treats a null term as "match all").
+      runSearch(input.value.trim() || null);
+    }
   });
 </script>
 </body>
